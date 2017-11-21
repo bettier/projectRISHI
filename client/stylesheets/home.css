@@ -1,0 +1,128 @@
+body {
+	background-color: black;
+}
+
+.index_header {
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	height: 75px;
+	width: 100%;
+	right: 0;
+	left: 0;
+}
+
+.index_logo {
+	position: absolute;
+	margin-left: 40px;
+	padding-top: 25px;
+	cursor: hand;
+	z-index: 10;
+	height: 75px;
+	left: 0;
+	top: 0;
+}
+
+.index_logo img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 60%;
+	position: absolute;
+	top: 13px;
+}
+
+.index_header ul {
+    list-style-type: none;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.index_header li {
+    float: right;
+}
+
+.index_header a {
+	font-family: 'Lato', sans-serif;
+	text-transform: capitalize;
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	display: block;
+	width: 150px;
+	cursor: hand;
+	color: gray;
+
+    -webkit-transition: color 0.5s;
+    transition: color 0.5s;
+}
+
+.index_header a:hover {
+	color: white;
+}
+
+.index_dropdown {
+	height: 130px;
+	width: 245px;
+	position: absolute;
+    z-index: 1;
+    right: 390px;
+    background-color: black;
+    font-family: 'Lato', sans-serif;
+}
+
+.index_dropdown li a {
+	list-style-type: none;
+	margin-left: -40px;
+	padding-left: 20px;
+	color: gray;
+	text-decoration: none;
+}
+
+.index_dropdown li:hover a {
+	cursor: pointer;
+	background-color: gray;
+	color: white;
+}
+
+.index_dropdown li:hover {
+	cursor: pointer;
+	background-color: gray;
+	color: white;
+}
+
+.index_banner {
+	background-image: url('/images/bg10-edited-2.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	height: 89%;
+	width: 100%;
+	right: 0;
+}
+
+.index_quote {
+	background-color: rgba(0, 0, 0, 0.5);
+	position: relative;
+	padding: 13px;
+	width: 275px;
+	float: right;
+	right: 5%;
+	top: 55%;
+}
+
+.index_quote > .index_bigQuote {
+	font-family: 'Lato', sans-serif;
+	font-size: 50px;
+	color: white;
+	opacity: 0.9;
+}
+
+.index_quote > .index_smallQuote {
+	font-family: 'Lato', sans-serif;
+	margin-top: 25px;
+	font-size: 15px;
+	color: white;
+}
