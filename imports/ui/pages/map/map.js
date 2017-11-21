@@ -239,7 +239,7 @@ function markerGenerator(name, coordinate, map, icon) {
       title: name,
       //info:
       animation: google.maps.Animation.DROP,
-      icon: '../assets/' + icon + '.png'
+      icon: '../icons/' + icon + '.png'
     });
   }
   else {
@@ -463,7 +463,7 @@ Template.App_map.onRendered( function() {
         }
 
         marker.content = '<h1>' + marker.getTitle() + '</h1>' +
-          '<center><img width=150 src="../assets/temp.png"/></img><p>' +
+          '<center><img width=150 src="../icons/temp.png"/></img><p>' +
           "This is where the description goes" + '</center>'; // this is where we add the description
 
         var infoWindow = new google.maps.InfoWindow();
@@ -483,7 +483,7 @@ Template.App_map.onRendered( function() {
   /*
    * Creates the "Ward __" labels for the menu buttons
    */
-  var filterRow = '<tr><td class="filter"><img width=15 src="../assets/IMAGE.png"/> SPLICE</td>  </tr>';
+  var filterRow = '<tr><td class="filter"><img width=15 src="/icons/IMAGE.png"/> SPLICE</td>  </tr>';
 
 
   for (var i = 0; i < filters.length; i++) {
@@ -575,7 +575,7 @@ Template.App_map.onRendered( function() {
   $('#tester').height(75 * listofmarkers.length);
 
   var icons = ['education_small', 'womens_empowerment', 'health_small', 'agriculture', 'points_of_interest'];
-  var filterRow2 = '<tr><td class="subfilter"><img width=15 src="../assets/IMAGE.png"/>              SPLICE</td></tr>';
+  var filterRow2 = '<tr><td class="subfilter"><img width=15 src="/icons/IMAGE.png"/>              SPLICE</td></tr>';
 
   for (var i = 0; i < listofmarkers.length; i++) {
     (function(i) {
@@ -592,7 +592,7 @@ Template.App_map.onRendered( function() {
 
         for (var a = 0; a < filterMarkers.length; a++) {
           for (var b = 0; b < filterMarkers[a].length; b++) {
-            if (filterMarkers[a][b].getIcon() == ("../assets/"+icons[i]+".png")) {
+            if (filterMarkers[a][b].getIcon() == ("/icons/"+icons[i]+".png")) {
               if (google.maps.geometry.poly.containsLocation(filterMarkers[a][b].getPosition(), wards[currWard-1])) {
                 filterMarkers[a][b].setMap(map);
 
