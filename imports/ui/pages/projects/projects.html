@@ -10,7 +10,8 @@
       <div class='projects_panetitle'>Water</div>
       <hr class='projects_paneltitleline'>
       <div class='projects_contentHolder'>
-        <p class='projects_introduction'>Our project took off with the help of Engineers for A Sustainable World (ESW), another
+        <p class='projects_introduction'>Our project took off with the help of Engineers for A Sustainable World (ESW),
+          another
           UC Berkeley organization that Project RISHI had decided to partner with for the water project. The foundation
           for the "water project" didn't really exist aside from test samples of water from the previous India Trip
           which showed evidence of an E Coli. contamination as well as a question of whether a water quality project of
@@ -54,7 +55,8 @@
       <div class='projects_panetitle'>Land Development</div>
       <hr class='projects_paneltitleline'>
       <div class='projects_contentHolder'>
-        <p class='projects_introduction'>The Land Development project was inspired by a conversation we had with Vrijinder, our
+        <p class='projects_introduction'>The Land Development project was inspired by a conversation we had with
+          Vrijinder, our
           primary contact in Bharog Baneri. He explained that there were several plots of land (~3000 bighas total,
           which is equivalent to 1200 acres) located in the first ward of the village, called Pudli. Many farmers in the
           area had attempted varied means to use this extensive land for agricultural projects, but had been
@@ -101,7 +103,8 @@
       <div class='projects_panetitle'>Women's Empowerment</div>
       <hr class='projects_paneltitleline'>
       <div class='projects_contentHolder'>
-        <p class='projects_introduction'>UC Berkeley's Women's Empowerment Committee was first formed as a Clinton Global
+        <p class='projects_introduction'>UC Berkeley's Women's Empowerment Committee was first formed as a Clinton
+          Global
           Initiative University project back in 2014. The founding members - Rupali Sood, Pooja Lalchandani, and Sanjana
           Sathya - wanted to address a major challenge in Bharog Baneri: the lack of empowerment for women. Women,
           although receive education till high school, are often not given the support and mentorship to enter into a
@@ -131,7 +134,8 @@
       <hr class='projects_paneltitleline'>
       <div class='projects_contentHolder'>
         <div class='projects_paneltitle' style='font-size:14px;'>Occular Care</div>
-        <p class='projects_introduction'>In Fall of 2013, our team analyzed general health surveys and patient conversations that
+        <p class='projects_introduction'>In Fall of 2013, our team analyzed general health surveys and patient
+          conversations that
           were conducted in Bharog Baneri in 2012. We determined that specialized healthcare was deficient in the
           village, and that ocular issues were not being addressed; these issues were especially important considering
           that the village has a high elevation which exposes the farmers to abnormally high levels of UV radiation. We
@@ -173,7 +177,8 @@
       <div class='projects_panetitle'>Education</div>
       <hr class='projects_paneltitleline'>
       <div class='projects_contentHolder'>
-        <p class='projects_introduction'>The roots of the Education Committee trace back to 2013, and its focus was on the
+        <p class='projects_introduction'>The roots of the Education Committee trace back to 2013, and its focus was on
+          the
           school-aged children in Bharog Baneri During the summer of 2014, we donated toys and supplies to the
           Anganwadis around Bharog Baneri, organized a Community Development Day focused on cleaning up trash within the
           village, and initiated a Pen Pals program. During our visit to the village's secondary school, we coordinated
@@ -204,6 +209,23 @@
           grade to 11th grade. We hope that finding a sustainable solution for the dropout rate will become a future RMP
           (RISHI Methodology Project). We can't wait to see what RISHI is able to implement and learn this summer!</p>
       </div>
+    </div>
+    {{#each projects}}
+      {{> project}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="project">
+  <div class='projects_projectpane'>
+    <div class='projects_bigpic'>
+      <img src='/images/education_gayatri.jpg'>
+    </div>
+    <div class='projects_panecaption'>This is where captions go</div>
+    <div class='projects_panetitle'>{{title}}</div>
+    <hr class='projects_paneltitleline'>
+    <div class='projects_contentHolder'>
+      {{body}}
     </div>
   </div>
 </template>
