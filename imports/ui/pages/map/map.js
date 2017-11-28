@@ -1,7 +1,11 @@
 import {mapStyles} from './mapObjects.js'
-import {wards} from './mapObjects.js'
+import {initialWards} from './mapObjects.js'
+import {Wards} from '/imports/api/map/wards.js'
 import './mapLabel.js'
 import './map.html'
+
+// wards on the map
+let wards = undefined;
 
 /**
  * Set up map default view
@@ -15,8 +19,6 @@ function initMap() {
     mapTypeId: 'roadmap',
     styles: mapStyles,
   });
-
-  console.log(mapStyles);
 }
 
 /**
@@ -34,8 +36,7 @@ function markerGenerator(place) {
       animation: google.maps.Animation.DROP,
       icon: '../icons/' + place.logo + '.png'
     });
-  }
-  else {
+  } else {
     marker = new google.maps.Marker({
       position: place.coordinates,
       map: map,
@@ -60,63 +61,11 @@ function markerGenerator(place) {
 }
 
 /**
- * Variable names to represent the logos
- */
-var logo = 'logo_small',
-  cart = 'cart_small',
-  health = 'health_small',
-  education = 'education_small',
-  water = 'water_small',
-  agriculture = 'agriculture',
-  womens = 'womens_empowerment',
-  poi = 'points_of_interest';
-
-var places = {
-  ward1: [
-    ['RISHI Liason', [30.575122, 77.502520], logo],
-    ['Temple #1', [30.575864, 77.501478], poi],
-    ['Temple #2', [30.575679, 77.501371], poi],
-    ['Terrace Farm', [30.574922, 77.516484], agriculture],
-    ['Primary School Ward', [30.577421, 77.504928], education],
-    ['Purli Primary School (Ward 1)', [30.577132, 77.505167], education]
-  ],
-  ward2: [
-    ['Greenhouse', [30.560902, 77.510453], water]
-  ],
-  ward3: [
-    ['Anganwadi Ward 3', [30.560207, 77.510739], education],
-    ['Computer Lab/Ayurvedic Center', [30.559006, 77.516603], education],
-    ['Mahila Mandal', [30.559570, 77.516531], poi],
-    ['Secondary School', [30.559061, 77.517062], education],
-    ['PHC', [30.560069, 77.513733], health],
-    ['Convenience Stores', [30.560246, 77.511274], cart]
-  ],
-  ward4: [
-    ['Anganwadi Ward 4', [30.561139, 77.523469], education],
-    ['Primary School Ward 4', [30.560544, 77.525855], education]
-  ],
-  ward5: [
-    ['Anganwadi Ward 5', [30.555780, 77.536152], education]
-  ]
-};
-
-/**
  * Variables to represent the list of markers
  */
 var listofmarkers = ['Education', 'Women\'s Empowerment', 'Health', 'Agriculture', 'Points of Interest'];
 
-/**
- * Variables to represent the filters for the wards
- */
-var filters = [['Reset Map'],
-  ['Ward 1', places['ward1']],
-  ["Ward 2", places['ward2']],
-  ['Ward 3', places['ward3']],
-  ['Ward 4', places['ward4']],
-  ['Ward 5', places['ward5']]];
-
 var currWard = -1;
-var highlighted_filters = [true, false, false, false, false];
 
 google.maps.Polygon.prototype.getBounds = function () {
   var bounds = new google.maps.LatLngBounds()
@@ -125,13 +74,6 @@ google.maps.Polygon.prototype.getBounds = function () {
   })
   return bounds;
 };
-
-/**
- * Ward coordinates
- */
-
-// ward4Coords.splice(251, 12);
-// ward5Coords.splice(180, 7);
 
 /**
  * Creates each ward with their filters
@@ -268,48 +210,54 @@ function initFilterMarkers() {
   }
 }
 
-Template.App_map.onRendered(function () {
+function initMapLabels() {
+  for (let i = 0; i < wards.length; i++) {
+    let ward = wards[i];
+    if (ward.name == "Reset Map") {
+      continue;
+    }
+
+    let label = new MapLabel({
+      text: ward.name,
+      position: new google.maps.LatLng(ward.center[0], ward.center[1]),
+      map: map,
+      fontSize: 20,
+    });
+  }
+}
+
+function initPage() {
+  // get wards from server
+  wards = Wards.find({}).fetch();
+
+  // make UI
   initMap();
   initWards();
   initWardFilters();
   initFilterMarkers();
+  initMapLabels();
+}
 
-  /**
-   * Adding labels to map (Ward #'s')
-   */
-  var mapLabel1 = new MapLabel({
-    text: 'Ward 1',
-    position: new google.maps.LatLng('30.581746', '77.505023'),
-    map: map,
-    fontSize: 20
-  });
 
-  var mapLabel2 = new MapLabel({
-    text: 'Ward 2',
-    position: new google.maps.LatLng('30.558858', '77.499994'),
-    map: map,
-    fontSize: 20
-  });
+/**
+ * Put in the wards into the DB to test the DB.
+ */
+function initDB() {
+  for (let i = 0; i < initialWards.length; i++) {
+    let ward = initialWards[i];
+    Meteor.call('wards.insert',
+      ward.name,
+      ward.center,
+      ward.border,
+      ward.color,
+      ward.places
+    );
+  }
+}
 
-  var mapLabel3 = new MapLabel({
-    text: 'Ward 3',
-    position: new google.maps.LatLng('30.563089', '77.518964'),
-    map: map,
-    fontSize: 18
-  });
-
-  var mapLabel4 = new MapLabel({
-    text: 'Ward 4',
-    position: new google.maps.LatLng('30.561011', '77.529445'),
-    map: map,
-    fontSize: 17
-  });
-
-  var mapLabel5 = new MapLabel({
-    text: 'Ward 5',
-    position: new google.maps.LatLng('30.553073', '77.544900'),
-    map: map,
-    fontSize: 20
-  });
-
+Template.App_map.onCreated(function () {
+  // initDB();
+  Meteor.subscribe("wards", function () {
+    initPage();
+  })
 });
