@@ -1,17 +1,18 @@
 <template name="App_admin_projects">
   {{>admin_navbar}}
   <div class="container">
-    <div class="adminHeader">
+    <div class="adminHeader editProjectsTitle">
       <h1>Projects</h1>
-      <input id="adminProjectsPhotoInput" type="file" style="display: none;" accept="image/."/>
-      <button class="btn adminAddPhoto">add photo</button>
+      <h1 class="adminProjectsAddButton"><a href="/admin/projects/edit">+</a></h1>
     </div>
-    <input type="text" class="adminTextInput captionInput" placeholder="caption">
-    <input type="text" class="adminTextInput titleInput" placeholder="Title">
-    <textarea type="text" class="adminTextInput contentInput" placeholder="content"></textarea>
-    <div class="centered">
-      <button class="btn adminCancelSave" id="adminProjectsCancel">cancel</button>
-      <button class="btn adminCancelSave" id="adminProjectsSave">save</button>
-    </div>
+    {{#each projects}}
+      {{>admin_project_small}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="admin_project_small">
+  <div>
+    <a href="/admin/projects/edit/{{_id}}" class="admin_project_small">{{title}}</a>
   </div>
 </template>

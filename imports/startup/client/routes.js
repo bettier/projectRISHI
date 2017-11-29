@@ -8,6 +8,7 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/map/map.js'
 import '../../ui/pages/travel/travel.js'
 import '../../ui/pages/projects/projects.js'
+import '../../ui/pages/admin_projects_add/admin_projects_add.js'
 import '../../ui/pages/admin_projects/admin_projects.js'
 
 // components
@@ -47,5 +48,19 @@ FlowRouter.route('/admin/projects', {
   name: 'App.admin_projects',
   action() {
     BlazeLayout.render('App_body', { main: 'App_admin_projects' });
+  },
+});
+
+FlowRouter.route('/admin/projects/edit', {
+  name: 'App.admin_projects_add',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_admin_projects_add' });
+  },
+});
+
+FlowRouter.route('/admin/projects/edit/:id', {
+  name: 'App.admin_projects_add',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_admin_projects_add' });
   },
 });

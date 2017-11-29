@@ -23,7 +23,7 @@
 }
 
 .adminAddPhoto{
-    margin-top: .7rem;
+    margin-top: .4rem;
     margin-left: auto;
     background-color: lightgrey;
     height: 2.4rem;
@@ -41,4 +41,34 @@
     width: 100%;
     margin-bottom: 1rem;
     margin-top: .5rem;
+}
+
+.editProjectsTitle{
+    border-bottom: darkgrey 1px solid;
+
+}
+
+#addProjectsPhoto{
+    width: 100%;
+}
+
+.admin_project_small {
+    color: grey;
+    font-size: 30px;
+    width: 100%;
+}
+
+.adminNavBar {
+    border-bottom: darkgrey 1px solid;
+}
+
+.adminNavBarButtons{
+    margin-left: auto;
+    color: grey;
+    font-size: 30px;
+}
+
+.adminProjectsAddButton{
+    margin-left: auto;
+    font-size: 40px;
 }
