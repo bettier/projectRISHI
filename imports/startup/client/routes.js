@@ -8,6 +8,7 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/map/map.js'
 import '../../ui/pages/travel/travel.js'
 import '../../ui/pages/projects/projects.js'
+import '../../ui/pages/admin_projects/admin_projects.js'
 
 // components
 import '../../ui/components/navbar/navbar.js'
@@ -38,5 +39,12 @@ FlowRouter.route('/projects', {
   name: 'App.projects',
   action() {
     BlazeLayout.render('App_body', { main: 'App_projects' });
+  },
+});
+
+FlowRouter.route('/admin/projects', {
+  name: 'App.admin_projects',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_admin_projects' });
   },
 });

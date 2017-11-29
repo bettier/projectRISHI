@@ -1,0 +1,40 @@
+.adminTextInput{
+    border: 1px grey solid;
+    width: 100%;
+    resize: none;
+    border-radius: 9px;
+}
+
+.titleInput {
+    font-size: 30px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.contentInput {
+    height: 400px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .7rem;
+}
+
+.adminHeader{
+    width: 100%;
+    display: inline-flex;
+}
+
+.adminAddPhoto{
+    margin-top: .7rem;
+    margin-left: auto;
+    background-color: lightgrey;
+    height: 2.4rem;
+}
+
+.adminCancelSave {
+    width: 49%;
+    margin-top: .1rem;
+    margin-left: .1rem;
+    margin-right: .1rem;
+    background-color: lightgrey;
+}

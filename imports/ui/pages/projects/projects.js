@@ -10,4 +10,5 @@ Template.App_projects.helpers({
 
 Template.App_projects.onCreated(function() {
   Meteor.subscribe('projects');
+  Meteor.subscribe('images.all');
 });
