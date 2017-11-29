@@ -8,6 +8,11 @@
     height: 85vh;
 }
 
+.map_body {
+    height: 100vh;
+    background-color: black;
+}
+
 .sidebar {
     z-index: 5;
     float: left;

@@ -12,6 +12,7 @@ import '../../ui/pages/admin_projects/admin_projects.js'
 
 // components
 import '../../ui/components/navbar/navbar.js'
+import '../../ui/components/admin_navbar/admin_navbar'
 
 // Set up all routes in the app
 FlowRouter.route('/', {

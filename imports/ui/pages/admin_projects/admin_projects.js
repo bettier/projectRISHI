@@ -9,7 +9,7 @@ Template.App_admin_projects.onCreated(function(){
 });
 
 Template.App_admin_projects.onRendered(function(){
-  $('body').css('background', 'white');
+  $('.captionInput').hide();
 });
 
 Template.App_admin_projects.events({
@@ -18,7 +18,7 @@ Template.App_admin_projects.events({
 
     let title = $(".titleInput").val();
     let body = $(".contentInput").val();
-    let caption = undefined;
+    let caption = $(".captionInput").val();
 
     // get image
     let photoInput = $('#adminProjectsPhotoInput').prop("files");
@@ -57,6 +57,8 @@ Template.App_admin_projects.events({
     reader.readAsDataURL(file);
     $('.adminHeader').after(img);
     $(img).css('width', '100%');
+
+    $('.captionInput').show();
   },
   'click .adminAddPhoto' (event) {
     event.preventDefault();

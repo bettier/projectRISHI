@@ -3,19 +3,17 @@
     width: 100%;
     resize: none;
     border-radius: 9px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .titleInput {
     font-size: 30px;
-    padding-left: 1rem;
-    padding-right: 1rem;
     margin-bottom: 1rem;
 }
 
 .contentInput {
     height: 400px;
-    padding-left: 1rem;
-    padding-right: 1rem;
     padding-top: .7rem;
 }
 
@@ -37,4 +35,10 @@
     margin-left: .1rem;
     margin-right: .1rem;
     background-color: lightgrey;
+}
+
+.captionInput {
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
 }

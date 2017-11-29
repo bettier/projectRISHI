@@ -1,12 +1,14 @@
 <template name="App_admin_projects">
+  {{>admin_navbar}}
   <div class="container">
     <div class="adminHeader">
       <h1>Projects</h1>
       <input id="adminProjectsPhotoInput" type="file" style="display: none;" accept="image/."/>
       <button class="btn adminAddPhoto">add photo</button>
     </div>
+    <input type="text" class="adminTextInput captionInput" placeholder="caption">
     <input type="text" class="adminTextInput titleInput" placeholder="Title">
-    <textarea type="text" class="adminTextInput contentInput" placeholder="Content"></textarea>
+    <textarea type="text" class="adminTextInput contentInput" placeholder="content"></textarea>
     <div class="centered">
       <button class="btn adminCancelSave" id="adminProjectsCancel">cancel</button>
       <button class="btn adminCancelSave" id="adminProjectsSave">save</button>

@@ -1,3 +1,7 @@
+.navigation_bar {
+    background-color: black;
+}
+
 .navbar_header ul {
     list-style-type: none;
     padding-top: 20px;
