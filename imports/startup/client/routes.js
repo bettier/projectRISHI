@@ -8,10 +8,12 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/map/map.js';
 import '../../ui/pages/travel/travel.js';
 import '../../ui/pages/projects/projects.js';
-import '../../ui/pages/admin/projects_add/admin_projects_add.js';
-import '../../ui/pages/admin/projects/admin_projects.js';
+import '../../ui/pages/admin/projects/add/add.js';
+import '../../ui/pages/admin/projects/projects/projects.js';
 import '../../ui/pages/admin/login/login.js';
 import '../../ui/pages/admin/signup/signup.js';
+import '../../ui/pages/admin/travel/travel/travel.js';
+import '../../ui/pages/admin/travel/add/add.js';
 
 // components
 import '../../ui/components/navbar/navbar.js'
@@ -39,7 +41,7 @@ FlowRouter.route('/travel', {
   },
 });
 
-FlowRouter.route('/projects', {
+FlowRouter.route('/travel', {
   name: 'App.projects',
   action() {
     BlazeLayout.render('App_body', { main: 'App_projects' });
@@ -58,7 +60,7 @@ FlowRouter.route('/admin/projects', {
 });
 
 FlowRouter.route('/admin/projects/edit', {
-  name: 'App.projects_add',
+  name: 'App.add',
   triggersEnter: [function(context, redirect) {
     if (!Meteor.user() && !Meteor.loggingIn())
       redirect('/admin/login');
@@ -69,7 +71,7 @@ FlowRouter.route('/admin/projects/edit', {
 });
 
 FlowRouter.route('/admin/projects/edit/:id', {
-  name: 'App.projects_add',
+  name: 'App.add',
   triggersEnter: [function(context, redirect) {
     if (!Meteor.user() && !Meteor.loggingIn())
       redirect('/admin/login');
@@ -80,10 +82,10 @@ FlowRouter.route('/admin/projects/edit/:id', {
 });
 
 FlowRouter.route('/admin', {
-  name: 'App.projects_add',
+  name: 'App.admin',
   triggersEnter: [function(context, redirect) {
     if (!Meteor.user() && !Meteor.loggingIn()) {
-      redirect('/admin/projects');
+      redirect('/admin/travel');
     } else {
       redirect('/admin/login');
     }
@@ -101,5 +103,38 @@ FlowRouter.route('/admin/signup', {
   name: 'App.signup',
   action() {
     BlazeLayout.render('App_body', { main: 'App_signup' });
+  },
+});
+
+FlowRouter.route('/admin/travel/edit', {
+  name: 'App.add',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn())
+      redirect('/admin/login');
+  }],
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_admin_travel_add' });
+  },
+});
+
+FlowRouter.route('/admin/travel/edit/:id', {
+  name: 'App.add',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn())
+      redirect('/admin/login');
+  }],
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_admin_travel_add' });
+  },
+});
+
+FlowRouter.route('/admin/travel', {
+  name: 'App.travel',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn())
+      redirect('/admin/login');
+  }],
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_admin_travel' });
   },
 });

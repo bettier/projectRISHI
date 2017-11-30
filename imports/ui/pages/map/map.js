@@ -47,7 +47,7 @@ function markerGenerator(place) {
 
   // this is where we add the description
   marker.content = '<h1>' + marker.getTitle() + '</h1>' +
-    '<center><img width=150 src="../icons/temp.png"/></img><p>' +
+    '<center><img width=150 src="../icons/temp.png"/></img><travel>' +
     place.description + '</center>';
 
   var infoWindow = new google.maps.InfoWindow();

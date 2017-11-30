@@ -1,4 +1,4 @@
-import './admin_projects_add.html'
+import './add.html'
 
 import {Images} from '/imports/api/images/images.js'
 import {Projects} from '/imports/api/projects/projects.js'
@@ -45,12 +45,12 @@ Template.App_admin_projects_add.onRendered(function () {
 
 Template.App_admin_projects_add.events({
   'click #adminProjectsCancel' (event) {
-    FlowRouter.go("/admin/projects");
+    FlowRouter.go("/admin/travel");
   },"click #delete_button"(event) {
     if(confirm("Are you sure you want to delete this project?")){
       console.log("deleting: " + id.get());
       Meteor.call("projects.delete", id.get());
-      FlowRouter.go('/');
+      FlowRouter.go('/admin/projects');
     }
   },
   'click #adminProjectsSave'(event) {
@@ -98,7 +98,7 @@ Template.App_admin_projects_add.events({
           caption,
           body);
       }
-      FlowRouter.go("/admin/projects");
+      FlowRouter.go("/admin/travel");
     });
   },
   'change #adminProjectsPhotoInput'(event) {

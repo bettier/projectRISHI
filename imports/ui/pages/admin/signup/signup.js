@@ -24,7 +24,7 @@ Template.App_signup.events({
         console.log(error);
       } else {
         console.log("Signup was a success!")
-        FlowRouter.go("/admin/projects");
+        FlowRouter.go("/admin/travel");
       }
     })
   }

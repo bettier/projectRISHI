@@ -1,4 +1,4 @@
-import './admin_projects.html';
+import './projects.html';
 
 import {Projects} from '/imports/api/projects/projects.js';
 

@@ -183,4 +183,20 @@
       </div>
     </div>
   </div>
+  {{#each travel_stories}}
+    {{>travel_story}}
+  {{/each}}
+</template>
+
+<template name="travel_story">
+  <div class='travel_travelpane'>
+    <div class='travel_panetitle'>{{title}}</div>
+    <div class='travel_bigpic'>
+      <img src='/cfs/files/images/{{picture}}'>
+    </div>
+    <div class='travel_panecaption'>{{caption}}</div>
+    <div class='travel_contentHolder travel_introduction'>
+      {{{body}}}
+    </div>
+  </div>
 </template>

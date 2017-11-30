@@ -13,7 +13,7 @@ Template.App_login.events({
         alert("You're username/password is incorrect!");
         console.log(error);
       } else {
-        FlowRouter.go("/admin/projects")
+        FlowRouter.go("/admin/travel")
       }
     });
   },

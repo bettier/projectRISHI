@@ -6,3 +6,9 @@ import '../../api/projects/server/publications.js'
 
 import '../../api/images/methods.js'
 import '../../api/images/server/publications.js'
+
+import '../../api/travel/methods.js'
+import '../../api/travel/server/publications.js'
+
+import '../../api/travel/methods.js'
+import '../../api/travel/server/publications.js'

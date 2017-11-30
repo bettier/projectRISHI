@@ -1,0 +1,18 @@
+<template name="App_admin_travel">
+  {{>admin_navbar}}
+  <div class="container">
+    <div class="adminHeader editProjectsTitle">
+      <h1>Travel</h1>
+      <h1 class="adminProjectsAddButton"><a href="/admin/travel/edit">+</a></h1>
+    </div>
+    {{#each travel}}
+      {{>admin_travel_small}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="admin_travel_small">
+  <div>
+    <a href="/admin/travel/edit/{{_id}}" class="admin_project_small">{{title}}</a>
+  </div>
+</template>

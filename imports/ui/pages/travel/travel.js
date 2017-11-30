@@ -1,20 +1,15 @@
 import './travel.html'
-import {ReactiveVar} from 'meteor/reactive-var';
 
-let p = [
-  {
-    title: "Title",
-    content: "hihihihihihhihihihihihihihihihihihihihihihihihihihihihihihihihihihihihii"
-  }
-];
 
-let projects = new ReactiveVar(p);
+import { Travel } from '/imports/api/travel/travel';
 
 Template.App_travel.helpers({
-  projects() {
-    if (projects) {
-      return projects.get();
-    }
-    return projects;
+  travel_stories(){
+    return Travel.find();
   }
+});
+
+Template.App_travel.onCreated(function() {
+  Meteor.subscribe('travel');
+  Meteor.subscribe('images.all');
 });
