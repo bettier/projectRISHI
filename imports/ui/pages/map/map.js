@@ -256,7 +256,7 @@ function initDB() {
 }
 
 Template.App_map.onCreated(function () {
-  initDB();
+  // initDB();
   Meteor.subscribe("wards", function () {
     initPage();
   })
