@@ -24,3 +24,4 @@ msavin:mongol
 cfs:standard-packages
 cfs:gridfs
 accounts-password
+babel-runtime

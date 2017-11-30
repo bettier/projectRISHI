@@ -79,6 +79,17 @@ FlowRouter.route('/admin/projects/edit/:id', {
   },
 });
 
+FlowRouter.route('/admin', {
+  name: 'App.projects_add',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn()) {
+      redirect('/admin/projects');
+    } else {
+      redirect('/admin/login');
+    }
+  }],
+});
+
 FlowRouter.route('/admin/login', {
   name: 'App.login',
   action() {

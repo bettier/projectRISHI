@@ -17,4 +17,4 @@ Template.App_login.events({
       }
     });
   },
-})
+});
