@@ -2,8 +2,11 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { Meteor } from 'meteor/meteor';
 
-// templates
+// layout templates
 import '../../ui/layout/body/body.js';
+import '../../ui/layout/admin/admin_layout.js'
+
+// page templates
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/map/map.js';
 import '../../ui/pages/travel/travel.js';
@@ -17,7 +20,8 @@ import '../../ui/pages/admin/travel/add/add.js';
 
 // components
 import '../../ui/components/navbar/navbar.js'
-import '../../ui/components/admin_navbar/admin_navbar'
+import '../../ui/components/admin_navbar/admin_navbar.js'
+import '../../ui/components/map/map.js'
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -41,7 +45,7 @@ FlowRouter.route('/travel', {
   },
 });
 
-FlowRouter.route('/travel', {
+FlowRouter.route('/projects', {
   name: 'App.projects',
   action() {
     BlazeLayout.render('App_body', { main: 'App_projects' });
@@ -55,7 +59,7 @@ FlowRouter.route('/admin/projects', {
       redirect('/admin/login');
   }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_admin_projects' });
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_projects' });
   },
 });
 
@@ -66,7 +70,7 @@ FlowRouter.route('/admin/projects/edit', {
       redirect('/admin/login');
   }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_admin_projects_add' });
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_projects_add' });
   },
 });
 
@@ -77,7 +81,7 @@ FlowRouter.route('/admin/projects/edit/:id', {
       redirect('/admin/login');
   }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_admin_projects_add' });
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_projects_add' });
   },
 });
 
@@ -85,24 +89,32 @@ FlowRouter.route('/admin', {
   name: 'App.admin',
   triggersEnter: [function(context, redirect) {
     if (!Meteor.user() && !Meteor.loggingIn()) {
-      redirect('/admin/travel');
-    } else {
       redirect('/admin/login');
+    } else {
+      redirect('/admin/travel');
     }
   }],
 });
 
 FlowRouter.route('/admin/login', {
   name: 'App.login',
+  triggersEnter: [function(context, redirect) {
+    if (Meteor.user() || Meteor.loggingIn())
+      redirect('/admin/projects');
+  }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_login' });
+    BlazeLayout.render('App_login');
   },
 });
 
 FlowRouter.route('/admin/signup', {
   name: 'App.signup',
+  triggersEnter: [function(context, redirect) {
+    if (Meteor.user() || Meteor.loggingIn())
+      redirect('/admin/projects');
+  }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_signup' });
+    BlazeLayout.render('App_signup');
   },
 });
 
@@ -113,7 +125,7 @@ FlowRouter.route('/admin/travel/edit', {
       redirect('/admin/login');
   }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_admin_travel_add' });
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_travel_add' });
   },
 });
 
@@ -124,7 +136,7 @@ FlowRouter.route('/admin/travel/edit/:id', {
       redirect('/admin/login');
   }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_admin_travel_add' });
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_travel_add' });
   },
 });
 
@@ -135,6 +147,6 @@ FlowRouter.route('/admin/travel', {
       redirect('/admin/login');
   }],
   action() {
-    BlazeLayout.render('App_body', { main: 'App_admin_travel' });
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_travel' });
   },
 });

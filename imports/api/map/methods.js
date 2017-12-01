@@ -11,9 +11,15 @@ Meteor.methods({
       places: places
     })
   },
-  'wards.update' (id, places) {
+  'wards.update' (id, name, center, border, color, places) {
     return Wards.update(id, {
-      $set: {places: places}
+      $set: {
+        name: name,
+        center: center,
+        border: border,
+        color: color,
+        places: places
+      }
     });
   },
   'wards.delete' (_id) {
