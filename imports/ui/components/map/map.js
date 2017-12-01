@@ -85,7 +85,7 @@ function createWardFilter(name, color, center) {
  * @param coords the border of the ward
  * @param color the color of the ward
  */
-var makeWard = function (coords, color) {
+function makeWard (coords, color) {
   new google.maps.Polygon({
     paths: coords,
     strokeColor: color,
@@ -95,7 +95,7 @@ var makeWard = function (coords, color) {
     fillOpacity: .3,
     map: map
   });
-};
+}
 
 /**
  * Generates the icon on the map for the specific place
