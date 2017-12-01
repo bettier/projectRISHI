@@ -24,6 +24,10 @@ function initMap() {
   });
 }
 
+/**
+ * Puts the ward on the map
+ * @param ward the ward we're putting on the map
+ */
 function initWard(ward) {
   makeWard(ward.border, ward.color, map);
 
@@ -40,6 +44,12 @@ function initWard(ward) {
   createWardFilter(ward.name, ward.color, ward.center);
 }
 
+/**
+ * Creates the ward filter (left)
+ * @param name the name of the ward (Ward 1, Ward 2...)
+ * @param color the color of the ward
+ * @param center the center of the ward. this is where the map zooms and where the name will be placed
+ */
 function createWardFilter(name, color, center) {
   /*
    * Creates the "Ward __" labels for the menu buttons
@@ -70,8 +80,13 @@ function createWardFilter(name, color, center) {
   });
 }
 
-var makeWard = function (coords, color, map) {
-  return new google.maps.Polygon({
+/**
+ * Draws the border and fills in the middle of the ward on the map
+ * @param coords the border of the ward
+ * @param color the color of the ward
+ */
+var makeWard = function (coords, color) {
+  new google.maps.Polygon({
     paths: coords,
     strokeColor: color,
     strokeOpacity: 0.8,
@@ -82,6 +97,10 @@ var makeWard = function (coords, color, map) {
   });
 };
 
+/**
+ * Generates the icon on the map for the specific place
+ * @param place the places we're putting on the map
+ */
 function markerGenerator(place) {
   let marker;
   let position = new google.maps.LatLng(place.coordinates[0], place.coordinates[1]);
@@ -114,26 +133,37 @@ function markerGenerator(place) {
     infoWindow.setContent(this.content);
     infoWindow.open(this.getMap(), this);
   });
-  return marker;
+
+  marker.setMap(map);
 }
 
+/**
+ * Initializes all of the wards in the databbase
+ */
 function initWards() {
   for (let i = 0; i < wards.length; i++) {
     initWard(wards[i]);
   }
 }
 
+/**
+ * Uses markerGenerator() to put the places on the map
+ * @param places the places we want to mark on the map
+ */
 function createMarkers(places) {
-  if (places) {
+  if (!places) {
     return;
   }
 
   for (let i = 0; i < places.length; i++) {
-    markerGenerator(places[p]).setMap();
+    markerGenerator(places[i]);
   }
 }
 
-function initPage() {
+/**
+ * Creates all of the elements on the maps component
+ */
+function initComp() {
   // get wards from server
   wards = Wards.find({}).fetch();
 
@@ -148,6 +178,9 @@ function initPage() {
   initMarkerFilterBar();
 }
 
+/**
+ * Sets the height of the filters according to how many there is
+ */
 function setFilterHeight() {
   // each filter has a height ~75
 
@@ -156,6 +189,9 @@ function setFilterHeight() {
   $('#tester').height(75 * listofmarkers.length);
 }
 
+/**
+ * Initializes the right filter bar
+ */
 function initMarkerFilterBar() {
   var icons = ['education_small', 'womens_empowerment', 'health_small', 'agriculture', 'points_of_interest'];
   var filterRow2 = '<tr><td class="subfilter"><img width=15 src="/icons/IMAGE.png"/>SPLICE</td></tr>';
@@ -191,6 +227,6 @@ function initDB() {
 Template.component_map.onCreated(function () {
   // initDB();
   Meteor.subscribe("wards", function () {
-    initPage();
+    initComp();
   })
 });
