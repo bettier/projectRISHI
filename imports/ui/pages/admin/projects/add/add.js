@@ -26,7 +26,7 @@ function initializePage() {
 
   // show image
   $('#addProjectsPhoto').attr('src', "/cfs/files/images/" + project.picture).show();
-  $('.captionInput').show().val(project.caption);
+  $('.captionInput').val(project.caption);
 
   prevPhoto = project.picture;
 }
@@ -40,12 +40,11 @@ Template.App_admin_projects_add.onCreated(function () {
 
 Template.App_admin_projects_add.onRendered(function () {
   $('#addProjectsPhoto').hide();
-  $('.captionInput').hide();
 });
 
 Template.App_admin_projects_add.events({
   'click #adminProjectsCancel' (event) {
-    FlowRouter.go("/admin/travel");
+    FlowRouter.go("/admin/projects");
   },"click #delete_button"(event) {
     if(confirm("Are you sure you want to delete this project?")){
       console.log("deleting: " + id.get());
@@ -98,7 +97,7 @@ Template.App_admin_projects_add.events({
           caption,
           body);
       }
-      FlowRouter.go("/admin/travel");
+      FlowRouter.go("/admin/projects");
     });
   },
   'change #adminProjectsPhotoInput'(event) {

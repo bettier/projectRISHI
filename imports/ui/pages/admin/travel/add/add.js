@@ -40,7 +40,6 @@ Template.App_admin_travel_add.onCreated(function () {
 
 Template.App_admin_travel_add.onRendered(function () {
   $('#addTravelPhoto').hide();
-  $('.captionInput').hide();
 });
 
 Template.App_admin_travel_add.events({
@@ -110,7 +109,6 @@ Template.App_admin_travel_add.events({
       prevPhoto = undefined;
     };
     reader.readAsDataURL(file);
-    $('.captionInput').show();
   },
   'click .adminAddPhoto'(event) {
     event.preventDefault();
