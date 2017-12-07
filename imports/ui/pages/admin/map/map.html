@@ -1,14 +1,6 @@
 <template name="App_admin_map">
+  {{> adminMapOverlay}}
   {{>admin_navbar}}
-  <div class="container">
-    <div class="adminHeader editProjectsTitle">
-      <h1>Map</h1>
-    </div>
-    <span id="adminMapButton" class="centered">Hide Map</span>
-  </div>
-  <div class="adminMapDisplay">
-    {{> component_map}}
-  </div>
   <div class="container">
     <div class="adminHeader editProjectsTitle">
       <h1>Wards</h1>
@@ -18,10 +10,20 @@
       {{>admin_map_selector}}
     {{/each}}
   </div>
+  <span id="adminMapButton" class="centered container">Preview Map</span>
 </template>
 
 <template name="admin_map_selector">
   <div>
     <a href="/admin/map/edit/{{_id}}" class="admin_project_small">{{name}}</a>
+  </div>
+</template>
+
+<template name="adminMapOverlay">
+  <div class="adminMapOverlay">
+    <div class="adminMapViewHeader">
+      <i class="fa fa-times-circle-o adminMapExit" aria-hidden="true"></i>
+    </div>
+    {{> component_map}}
   </div>
 </template>
