@@ -1,8 +1,7 @@
-.adminTextInput{
+.adminTextInput {
     border: 1px grey solid;
     width: 100%;
     resize: none;
-    border-radius: 9px;
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -12,17 +11,26 @@
     margin-bottom: 1rem;
 }
 
+#adminMapButton {
+    background: lightgrey;
+    cursor: pointer;
+}
+
+.adminMapDisplay {
+    width: 100%;
+}
+
 .contentInput {
     height: 400px;
     padding-top: .7rem;
 }
 
-.adminHeader{
+.adminHeader {
     width: 100%;
     display: inline-flex;
 }
 
-.adminAddPhoto{
+.adminAddPhoto {
     margin-top: .4rem;
     margin-left: auto;
     background-color: lightgrey;
@@ -42,12 +50,12 @@
     margin-bottom: 1rem;
 }
 
-.editProjectsTitle{
+.editProjectsTitle {
     border-bottom: darkgrey 1px solid;
 
 }
 
-#addProjectsPhoto, #addTravelPhoto{
+#addProjectsPhoto, #addTravelPhoto {
     width: 100%;
 }
 
@@ -59,15 +67,32 @@
 
 .adminNavBar {
     border-bottom: darkgrey 1px solid;
+    background-color: lightgrey;
+    box-shadow: 10px 0px 10px darkgrey;
 }
 
-.adminNavBarButtons{
+.adminNavBarButtons {
     margin-left: auto;
     color: grey;
     font-size: 30px;
+    width: 100%;
+    display: flex;
 }
 
-.adminProjectsAddButton{
+.adminLoginInput{
+    font-size: 2rem;
+    border:none;
+    text-align: center;
+    background-color: #dbdbdb !important;
+    border-radius: 9px;
+    margin-bottom: 1rem;
+}
+
+.logoutButton {
+    margin-left: auto;
+}
+
+.adminProjectsAddButton {
     margin-left: auto;
     font-size: 40px;
 }

@@ -1,0 +1,27 @@
+<template name="App_admin_map">
+  {{>admin_navbar}}
+  <div class="container">
+    <div class="adminHeader editProjectsTitle">
+      <h1>Map</h1>
+    </div>
+    <span id="adminMapButton" class="centered">Hide Map</span>
+  </div>
+  <div class="adminMapDisplay">
+    {{> component_map}}
+  </div>
+  <div class="container">
+    <div class="adminHeader editProjectsTitle">
+      <h1>Wards</h1>
+      <h1 class="adminProjectsAddButton"><a href="/admin/map/edit">+</a></h1>
+    </div>
+    {{#each wards}}
+      {{>admin_map_selector}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="admin_map_selector">
+  <div>
+    <a href="/admin/map/edit/{{_id}}" class="admin_project_small">{{name}}</a>
+  </div>
+</template>
