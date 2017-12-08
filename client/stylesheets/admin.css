@@ -32,6 +32,18 @@
     /*font-size: 40px;*/
 }
 
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px grey solid;
+}
+
+.bottomElement {
+    margin-bottom: 50px;
+}
+
 .titleInput {
     font-size: 30px;
     margin-bottom: 1rem;
@@ -63,7 +75,7 @@
     margin-top: .1rem;
     margin-left: .1rem;
     margin-right: .1rem;
-    background-color: lightgrey;
+    cursor: pointer;
 }
 
 .captionInput {

@@ -15,6 +15,10 @@ function initPage() {
     return;
   }
 
+  let r = $("<span id=\"delete_button\" class=\"btn btn-default adminCancelSave\" >delete</span>");
+  $('.centered').append(r);
+  $('.adminCancelSave').css('width', '27%');
+
   name.set(ward.name);
   center = ward.center;
   border = ward.border;
@@ -34,5 +38,22 @@ Template.App_admin_map_add.helpers({
   },
   name() {
     return name.get();
+  }
+});
+
+Template.App_admin_map_add.events({
+  'click #adminMapCancel' (event) {
+    FlowRouter.go("/admin/map");
+  },
+  "click #delete_button"(event) {
+    if(confirm("Are you sure you want to delete this ward?")){
+      console.log("deleting: " + id.get());
+      Meteor.call("wards.delete", id.get());
+      FlowRouter.go('/admin/map');
+    }
+  },
+  "click #adminMapSave" (event) {
+    event.preventDefault();
+    alert("Well you can't edit anything, so IDK what you're doing");
   }
 });
