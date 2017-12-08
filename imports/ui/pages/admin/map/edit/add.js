@@ -12,6 +12,10 @@ function initPage() {
   let ward = Wards.findOne(id.get());
 
   if(!id.get()) {
+    center = border = color = undefined;
+    id.set(undefined);
+    name.set(undefined);
+    places.set(undefined);
     return;
   }
 

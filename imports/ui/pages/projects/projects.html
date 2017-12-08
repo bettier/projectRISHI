@@ -3,23 +3,36 @@
     {{#each projects}}
       {{> project}}
     {{/each}}
-   
   </div>
+
+  <div class="projectsSideMenu">
+    <h4 class="sideMenuTitle">Projects</h4>
+    {{#each projects}}
+      {{> sideMenuSelector}}
+    {{/each}}
+  </div>
+
 </template>
 
 <template name="project">
-  <a name=''></a>
-      <div class='projects_bigpic'>
-          <img id='pic' src="/cfs/files/images/{{picture}}">
-      </div>
+  <a name='{{title}}'></a>
+  <div class='projects_bigpic'>
+    <img id='pic' src="/cfs/files/images/{{picture}}">
+  </div>
   <div class='container'>
-      <div class='projects_projectpane'>
-        <div class='projects_panecaption'>{{caption}}</div>
-        <div class='projects_panetitle'>{{title}}</div>
-        <hr class='projects_paneltitleline'>
-        <div class='projects_contentHolder'>
-          {{{body}}}
-        </div>
-   </div>
+    <div class='projects_projectpane'>
+      <div class='projects_panecaption'>{{caption}}</div>
+      <div class='projects_panetitle'>{{title}}</div>
+      <hr class='projects_paneltitleline'>
+      <div class='projects_contentHolder'>
+        {{{body}}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="sideMenuSelector">
+  <div class="sideMenuSelector">
+    <a class="sideMenuText" href="#{{title}}">{{title}}</a>
   </div>
 </template>
