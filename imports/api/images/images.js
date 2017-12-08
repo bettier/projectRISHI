@@ -8,7 +8,7 @@ export const Images = new FS.Collection("images", {
 
 Images.allow({
   'insert': function () {
-    // add custom authentication code here
+    // edit custom authentication code here
     return true;
   },
   'update': function() {

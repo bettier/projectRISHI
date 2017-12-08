@@ -55,7 +55,7 @@ Template.App_admin_travel_add.events({
   'click #adminTravelSave'(event) {
     event.preventDefault();
 
-    // add <br/> for html
+    // edit <br/> for html
     let body = $(".contentInput").val().replace(/\n/g, '<br/>');
 
     let title = $(".titleInput").val();

@@ -127,7 +127,7 @@ function markerGenerator(place) {
     });
   }
 
-  // this is where we add the description
+  // this is where we edit the description
   marker.content = '<h1>' + marker.getTitle() + '</h1>' +
     '<center><img width=150 src="../icons/temp.png"/></img><travel>' +
     place.description + '</center>';

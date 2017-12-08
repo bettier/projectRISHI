@@ -55,7 +55,7 @@ Template.App_admin_projects_add.events({
   'click #adminProjectsSave'(event) {
     event.preventDefault();
 
-    // add <br/> for html
+    // edit <br/> for html
     let body = $(".contentInput").val().replace(/\n/g, '<br/>');
 
     let title = $(".titleInput").val();

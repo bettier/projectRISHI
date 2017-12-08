@@ -1,0 +1,17 @@
+<template name="App_admin_map_add">
+  <div class="container">
+    <div class="adminHeader editProjectsTitle">
+      <h1>{{name}}</h1>
+    </div>
+    <h2>Places</h2>
+    {{#each places}}
+      {{> place}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="place">
+  <div>
+    <a href="#" class="admin_project_small">{{name}}</a>
+  </div>
+</template>
