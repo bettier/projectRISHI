@@ -1,3 +1,12 @@
+#adminZoomInput {
+    height: 2rem;
+    width: 3rem;
+    background: none;
+    color: white;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}
+
 .adminTextInput {
     border: 1px grey solid;
     width: 100%;
@@ -6,14 +15,37 @@
     padding-right: 1rem;
 }
 
+.adminMapSave {
+    width: 30%;
+    background: none;
+    border-radius: 9px;
+    border: white 1px solid;
+    color: white;
+    cursor: pointer;
+}
+
+.adminMapButtonHolder {
+    width: 100%;
+    margin-top: .5rem;
+    display: flex;
+}
+
+.adminMapButton {
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    padding: .5rem .5rem .5rem .5rem;
+    width: 25%;
+    align-content: center;
+    margin-right: 1rem;
+    justify-content: center;
+    display: flex;
+    border-radius: 9px;
+}
+
 .titleInput {
     font-size: 30px;
     margin-bottom: 1rem;
-}
-
-#adminMapButton {
-    background: lightgrey;
-    cursor: pointer;
 }
 
 .adminMapDisplay {
@@ -99,6 +131,12 @@
     display:none;
 }
 
+.adminMapDescriptions {
+    margin-top: 1.25rem;
+    margin-left: 1rem;
+    color: white;
+}
+
 .adminMapViewHeader {
     width: 100%;
     display: flex;
@@ -106,12 +144,16 @@
 }
 
 .adminMapExit {
-    margin-left: auto;
     color: white;
     margin-top: 1rem;
     margin-right: 1rem;
+    margin-left: 1rem;
     font-size: 30px !important;
     cursor: pointer;
+}
+
+.adminZoom {
+    margin-left: auto;
 }
 
 .logoutButton {

@@ -1,5 +1,5 @@
-import { Mongo } from 'meteor/mongo'
+import {Mongo} from 'meteor/mongo'
 
 export const Wards = new Mongo.Collection('wards');
 
-export const MapCenter = new Mongo.Collection('mapCenter');
+export const MapSettings = new Mongo.Collection('mapSettings');

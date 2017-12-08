@@ -1,11 +1,11 @@
 import {Meteor} from 'meteor/meteor'
-import {Wards} from '../map.js'
-import {MapCenter} from '../map.js'
+import {Wards, MapZoom, MapCenter} from '../map.js'
+import {MapSettings} from "../map";
 
 Meteor.publish('wards', function () {
   return Wards.find();
 });
 
-Meteor.publish('mapCenter', function () {
-  return MapCenter.find();
+Meteor.publish('mapSettings', function() {
+  return MapSettings.find();
 });

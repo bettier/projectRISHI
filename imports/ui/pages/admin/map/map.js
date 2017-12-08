@@ -1,16 +1,22 @@
 import './map.html'
 
 import {Wards} from '/imports/api/map/map.js';
-import {MapCenter} from "../../../../api/map/map";
+import {MapSettings} from "../../../../api/map/map";
 
 let firstTimeClickMapButton = true;
-let mapCenterCoor = undefined;
+let mapListener = undefined;
+
+let currentZoom = undefined;
+let currentCenter = undefined;
+
+let settings = undefined;
+
+let newLat = undefined;
+let newLong = undefined;
 
 Template.App_admin_map.onCreated(function () {
-  Meteor.subscribe('mapCenter', function () {
-    Meteor.subscribe('wards');
-    mapCenterCoor = MapCenter.find({}).fetch()[0].coordinates;
-  });
+  Meteor.subscribe('mapSettings');
+  Meteor.subscribe('wards');
 });
 
 Template.App_admin_map.helpers({
@@ -21,24 +27,86 @@ Template.App_admin_map.helpers({
 
 Template.App_admin_map.events({
   'click #adminMapButton'(event) {
-    $('.adminMapOverlay').fadeIn(function () {
-      google.maps.event.trigger($.goMap.map, 'resize');
-      google.maps.event.addListener($.goMap.map, "click", function (event) {
-        let latitude = event.latLng.lat();
-        let longitude = event.latLng.lng();
-        console.log(latitude + ', ' + longitude);
-      });
+    $(".adminCoorDesc").hide();
+    $(".adminMapViewTitle").hide();
+    openMapOverlay();
+  },
+  'click #adminChangeCenter'(event) {
+    settings = MapSettings.find({}).fetch()[0];
+    currentCenter = settings.coordinates;
+    currentZoom = settings.zoom;
 
-      if (firstTimeClickMapButton) {
-        let bounds = new google.maps.LatLngBounds();
-        bounds.extend(new google.maps.LatLng(mapCenterCoor[0], mapCenterCoor[1]));
-        map.fitBounds(bounds);
-        map.setZoom(14);
-        firstTimeClickMapButton = false;
-      }
+    $(".adminCoorDesc").show();
+    $(".adminMapViewTitle").hide();
+    $("#adminZoomInput").val(settings.zoom);
+
+    openMapOverlay();
+
+    // create coordinates listener
+    mapListener = google.maps.event.addListener($.goMap.map, "click", function (event) {
+      newLat = event.latLng.lat();
+      newLong = event.latLng.lng();
+
+      currentCenter = [newLat, newLong];
+
+      changeBounds();
+      changeCoorDesc(true);
     });
   },
   'click .adminMapExit'(event) {
-    $('.adminMapOverlay').fadeOut();
+    exitOverlay();
+  },
+  'click .adminMapSave'(event) {
+    Meteor.call('mapSettings.insert',
+      currentCenter,
+      currentZoom
+    );
+    exitOverlay();
+  },
+  'change #adminZoomInput'(event) {
+    console.log("hi");
+    currentZoom = parseFloat($("#adminZoomInput").val());
+    $.goMap.map.setZoom(currentZoom);
   }
 });
+
+function exitOverlay() {
+  $('.adminMapOverlay').fadeOut(function () {
+    $('#adminCoorDesc').text("Click on Map to choose new starting center");
+  });
+
+  if (mapListener) {
+    mapListener.remove();
+  }
+}
+
+function changeCoorDesc(lat, long, updated) {
+  let latText = (currentCenter[0] + "").substring(0, 8);
+  let longText = (currentCenter[1] + "").substring(0, 8);
+  let first = undefined;
+  if (updated) {
+    first = "New";
+  } else {
+    first = "Current";
+  }
+
+  let text = first + " Map Center: (Lat: " + latText + " Long: " + longText + ")";
+  $("#adminCoorDesc").text(text);
+}
+
+function changeBounds() {
+  let bounds = new google.maps.LatLngBounds();
+  bounds.extend(new google.maps.LatLng(currentCenter[0], currentCenter[1]));
+  map.fitBounds(bounds);
+  map.setZoom(currentZoom);
+}
+
+function openMapOverlay() {
+  $('.adminMapOverlay').fadeIn(function () {
+    google.maps.event.trigger($.goMap.map, 'resize');
+    if (firstTimeClickMapButton) {
+      changeBounds(settings.coordinates[0], settings.coordinates[1]);
+      firstTimeClickMapButton = false;
+    }
+  });
+}

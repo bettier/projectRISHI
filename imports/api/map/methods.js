@@ -1,6 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Wards} from './map.js'
-import {MapCenter} from './map.js'
+import {Wards, MapZoom, MapCenter, MapSettings} from './map.js'
 
 Meteor.methods({
   'wards.insert'(name, center, border, color, places) {
@@ -26,10 +25,12 @@ Meteor.methods({
   'wards.delete'(_id) {
     return Wards.remove(_id);
   },
-  'mapCenter.insert'(coordinates) {
-    MapCenter.remove();
-    return MapCenter.insert({
-      coordinates: coordinates
+  'mapSettings.insert'(center, zoom) {
+    // there can only be 1!
+    MapSettings.remove({});
+    return MapSettings.insert({
+      coordinates: center,
+      zoom: zoom
     })
-  }
+  },
 });

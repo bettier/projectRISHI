@@ -1,13 +1,13 @@
 import {mapStyles} from './mapObjects.js'
 import {initialWards} from './mapObjects.js'
-import {Wards} from '/imports/api/map/map.js'
-import {MapCenter} from '/imports/api/map/map.js'
+import {Wards, MapSettings} from '/imports/api/map/map.js'
 import './mapLabel.js'
 import './map.html'
 
 // wards on the map
 let wards = undefined;
 let mapCenterCoor = undefined;
+let mapZoom = undefined;
 
 // Variables to represent the list of markers
 let listofmarkers = ['Education', 'Women\'s Empowerment', 'Health', 'Agriculture', 'Points of Interest'];
@@ -16,9 +16,10 @@ let listofmarkers = ['Education', 'Women\'s Empowerment', 'Health', 'Agriculture
  * Set up map default view
  */
 function initMap() {
+  console.log(typeof(mapZoom));
   $('.map').goMap({
-    zoom: 14,
-    minZoom: 13,
+    zoom: mapZoom,
+    minZoom: 12,
     disableDefaultUI: true,
     center: new google.maps.LatLng(mapCenterCoor[0], mapCenterCoor[1]),
     mapTypeId: 'roadmap',
@@ -76,7 +77,8 @@ function createWardFilter(name, color, center) {
 
     // reset map unzooms but everything else zooms in
     if (name == 'Reset Map') {
-      map.setZoom(14);
+      console.log(mapZoom + 'aldjfladsflkajhdsfsa');
+      map.setZoom(mapZoom);
     } else {
       map.setZoom(15);
     }
@@ -215,6 +217,11 @@ function initMarkerFilterBar() {
  * Put in the wards into the DB to test the DB.
  */
 function initDB() {
+  Meteor.call('mapSettings.insert',
+    [30.565075, 77.516132],
+    14
+  );
+
   for (let i = 0; i < initialWards.length; i++) {
     let ward = initialWards[i];
     Meteor.call('wards.insert',
@@ -224,16 +231,18 @@ function initDB() {
       ward.color,
       ward.places
     );
-
   }
 }
 
 Template.component_map.onCreated(function () {
-  // initDB();
-  Meteor.subscribe("mapCenter", function () {
-    mapCenterCoor = MapCenter.find({}).fetch()[0].coordinates;
+  Meteor.subscribe("mapSettings", function () {
     Meteor.subscribe("wards", function () {
+      // initDB();
+
+      let mapSettings = MapSettings.find({}).fetch()[0];
+      mapCenterCoor = mapSettings.coordinates;
+      mapZoom = mapSettings.zoom;
       initComp();
     })
-  })
+  });
 });
