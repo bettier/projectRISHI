@@ -3,7 +3,6 @@ import './map.html'
 import {Wards} from '/imports/api/map/map.js';
 import {MapSettings} from "../../../../api/map/map";
 
-let firstTimeClickMapButton = true;
 let mapListener = undefined;
 
 let currentZoom = undefined;
@@ -27,17 +26,10 @@ Template.App_admin_map.helpers({
 
 Template.App_admin_map.events({
   'click #adminMapButton'(event) {
-    $(".adminCoorDesc").hide();
-    $(".adminMapViewTitle").hide();
-    openMapOverlay();
-  },
-  'click #adminChangeCenter'(event) {
     settings = MapSettings.find({}).fetch()[0];
     currentCenter = settings.coordinates;
     currentZoom = settings.zoom;
 
-    $(".adminCoorDesc").show();
-    $(".adminMapViewTitle").hide();
     $("#adminZoomInput").val(settings.zoom);
 
     openMapOverlay();
@@ -53,10 +45,10 @@ Template.App_admin_map.events({
       changeCoorDesc(true);
     });
   },
-  'click .adminMapExit'(event) {
+  'click #adminMapCancel'(event) {
     exitOverlay();
   },
-  'click .adminMapSave'(event) {
+  'click #adminMapSave'(event) {
     Meteor.call('mapSettings.insert',
       currentCenter,
       currentZoom
@@ -80,7 +72,7 @@ function exitOverlay() {
   }
 }
 
-function changeCoorDesc(lat, long, updated) {
+function changeCoorDesc(updated) {
   let latText = (currentCenter[0] + "").substring(0, 8);
   let longText = (currentCenter[1] + "").substring(0, 8);
   let first = undefined;
@@ -104,9 +96,6 @@ function changeBounds() {
 function openMapOverlay() {
   $('.adminMapOverlay').fadeIn(function () {
     google.maps.event.trigger($.goMap.map, 'resize');
-    if (firstTimeClickMapButton) {
-      changeBounds(settings.coordinates[0], settings.coordinates[1]);
-      firstTimeClickMapButton = false;
-    }
+    changeBounds(settings.coordinates[0], settings.coordinates[1]);
   });
 }

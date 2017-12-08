@@ -5,10 +5,7 @@
     <div class="adminHeader editProjectsTitle">
       <h1>Map</h1>
     </div>
-    <div class="adminMapButtonHolder">
-      <span id="adminMapButton" class="adminMapButton">Preview Map</span>
-      <span id="adminChangeCenter" class="adminMapButton">Change Map Center</span>
-    </div>
+    <a id='adminMapButton' class='admin_project_small' href="#">Change Map Settings</a>
     <div class="adminHeader editProjectsTitle">
       <h1>Wards</h1>
       <h1 class="adminProjectsAddButton"><a href="/admin/map/edit">+</a></h1>
@@ -31,11 +28,11 @@
       <h4 id="adminCoorDesc" class="adminMapDescriptions">Click on Map to choose new starting center</h4>
       <h4 class="adminMapDescriptions adminZoom">Default Zoom:</h4>
       <input type="number" id="adminZoomInput" class="h4" min="12">
-      <i class="fa fa-times-circle-o adminMapExit" aria-hidden="true"></i>
     </div>
     {{> component_map}}
     <div class="adminMapViewHeader centered">
-      <button class="adminMapSave">Save</button>
+      <button id='adminMapSave' class="h4 adminMapSaveCancel">Save</button>
+      <button id='adminMapCancel' class="h4 adminMapSaveCancel">Cancel</button>
     </div>
   </div>
 </template>
