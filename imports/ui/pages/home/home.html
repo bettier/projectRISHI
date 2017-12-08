@@ -1,6 +1,6 @@
 <template name="App_home">
   <div id='container'>
-    <div class='index_banner' id='home'>
+    <div class='index_banner w3-display-container' id='home'>
       <div class='index_quote'>
         <div class='index_bigQuote'><span id='first'>Change the world,</span>
           <span id='second'>one village at a time...</span></div>
@@ -8,7 +8,8 @@
       </div>
     </div>
   </div>
-  <div class="w3-content w3-container w3-padding-64" id="about">
+  <!--
+  <div class="w3-content w3-container w3-padding-64" id="about" style="inline-block">
     <h3 class="w3-center">ABOUT ME</h3>
     <p class="w3-center"><em>I love photography</em></p>
     <p>We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -17,26 +18,70 @@
     <div class="w3-row">
       <div class="w3-col m6 w3-center w3-padding-large">
         <p><b><i class="fa fa-user w3-margin-right"></i>My Name</b></p><br>
-        <img src="/w3images/avatar_hat.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="500" height="333">
+        <img src="/images/logo_with_title.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="500" height="333">
       </div>
     </div>
   </div>
-  <div class="w3-row w3-center w3-dark-grey w3-padding-16">
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">14+</span><br>
-      Partners
-    </div>
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">55+</span><br>
-      Projects Done
-    </div>
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">89+</span><br>
-      Happy Clients
-    </div>
-    <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">150+</span><br>
-      Meetings
+-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <p align="left" class="brand-heading">
+          Project RISHI (Rural India Social and Health Improvement) is a non-profit organization whose mission is to promote the sustainable development and growth of rural Indian communities.
+        </p>
+      </div>
     </div>
   </div>
+  <section class="container content-section text-center">
+    <div class="row">
+        <div align="left" class="col-md-4">
+            <h3 style="color:#5d5d5d">What We Do.</h3>
+            <br>
+            <p style="color:#5d5d5d">We aim to address key developmental disparities that challenge our target village populations. After thoroughly understanding the severity of conditions relevant to each disparity, we research proven solutions developed by social enterprises that have already been successful in alleviating the burden of these disparities. Project RISHI catalyzes positive change by effectively bringing these affordable and sustainable solutions to our partnering villagers and then thoroughly evaluating the impact of each initiative.</p>
+            <p align="middle"><a href="/projects" class="btn btn-default btn-lg">Learn More</a></p>
+        </div>
+        <div class="col-md-4">
+            <a href="/health"><img align="middle" class="img-portfolio img-responsive" src="http://s3.projectrishi.org/img/homepage/health.png"/></a><br>
+        </div>
+        <div class="col-md-4">
+            <a href="/water"><img align="middle" class="img-portfolio img-responsive" src="http://s3.projectrishi.org/img/homepage/water_sanitation.png"/></a><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/energy"><img align="middle" class="img-portfolio img-responsive" src="http://s3.projectrishi.org/img/homepage/energy.png"/></a><br>
+        </div>
+        <div class="col-md-4">
+            <a href="/education"><img align="middle" class="img-portfolio img-responsive" src="http://s3.projectrishi.org/img/homepage/education.png"/></a><br>
+        </div>
+        <div class="col-md-4">
+            <a href="/income"><img align="middle" class="img-portfolio img-responsive" src="http://s3.projectrishi.org/img/homepage/income_generation.png"/></a><br>
+        </div>
+    </div>
+  </section>
+    <hr>
+    <div class="bgimg-2 w3-display-container w3-opacity-min">
+        <div class="w3-display-middle">
+          <span class="w3-xxlarge w3-text-white w3-wide">MAP</span>
+        </div>
+      </div>
+  <footer class="footer-distributed">
+    <div class="footer-right">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <div class="footer-left">
+      <p class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">Map</a>
+        <a href="#">Projects</a>
+        <a href="#">Travel</a>
+        <a href="#">About</a>
+        <a href="#">Donate</a>
+      </p>
+    <p>Project RISHI &copy; 2017</p>
+    </div>
+  </footer>
 </template>
