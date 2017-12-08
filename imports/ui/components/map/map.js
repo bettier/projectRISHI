@@ -237,7 +237,7 @@ function initDB() {
 Template.component_map.onCreated(function () {
   Meteor.subscribe("mapSettings", function () {
     Meteor.subscribe("wards", function () {
-      // initDB();
+      initDB();
 
       let mapSettings = MapSettings.find({}).fetch()[0];
       mapCenterCoor = mapSettings.coordinates;
