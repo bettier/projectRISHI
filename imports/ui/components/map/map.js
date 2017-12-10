@@ -229,7 +229,7 @@ function initDB() {
       ward.center,
       ward.border,
       ward.color,
-      ward.places
+      // ward.places
     );
   }
 }

@@ -9,3 +9,9 @@ Template.App_home.onCreated(function () {
   $('#second').delay(2000).fadeTo(2000, 1);
   $('.index_smallQuote').delay(3500).fadeTo(2000, 0.5);
 });
+
+Template.App_home.events({
+  'click .bgimg-2' (event) {
+    FlowRouter.go('/map');
+  }
+});

@@ -36,7 +36,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/map', {
   name: 'App.map',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_map' });
+    BlazeLayout.render('App_map');
   },
 });
 
