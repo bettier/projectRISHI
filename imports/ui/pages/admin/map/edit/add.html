@@ -1,0 +1,27 @@
+<template name="App_admin_map_add">
+  <div class="container">
+    <div class="adminHeader editProjectsTitle">
+      <h1>
+        {{#if name}}
+          {{name}}
+        {{else}}
+          Welp you got me. We didn't finish the project.
+        {{/if}}
+      </h1>
+    </div>
+    <h2>Places</h2>
+    {{#each places}}
+      {{> place}}
+    {{/each}}
+  </div>
+  <div class="centered bottomBar">
+    <button class="btn adminCancelSave" id="adminMapCancel">cancel</button>
+    <button class="btn adminCancelSave" id="adminMapSave">save</button>
+  </div>
+</template>
+
+<template name="place">
+  <div>
+    <a href="#" class="admin_project_small">{{name}}</a>
+  </div>
+</template>

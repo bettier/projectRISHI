@@ -11,12 +11,14 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/map/map.js';
 import '../../ui/pages/travel/travel.js';
 import '../../ui/pages/projects/projects.js';
-import '../../ui/pages/admin/projects/add/add.js';
-import '../../ui/pages/admin/projects/projects/projects.js';
+import '../../ui/pages/admin/projects/edit/add.js';
+import '../../ui/pages/admin/projects/projects.js';
 import '../../ui/pages/admin/login/login.js';
 import '../../ui/pages/admin/signup/signup.js';
-import '../../ui/pages/admin/travel/travel/travel.js';
-import '../../ui/pages/admin/travel/add/add.js';
+import '../../ui/pages/admin/travel/travel.js';
+import '../../ui/pages/admin/travel/edit/add.js';
+import '../../ui/pages/admin/map/map.js';
+import '../../ui/pages/admin/map/edit/add.js'
 
 // components
 import '../../ui/components/navbar/navbar.js'
@@ -148,5 +150,38 @@ FlowRouter.route('/admin/travel', {
   }],
   action() {
     BlazeLayout.render('App_admin_layout', { main: 'App_admin_travel' });
+  },
+});
+
+FlowRouter.route('/admin/map', {
+  name: 'App.map',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn())
+      redirect('/admin/login');
+  }],
+  action() {
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_map' });
+  },
+});
+
+FlowRouter.route('/admin/map/edit', {
+  name: 'App.map',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn())
+      redirect('/admin/login');
+  }],
+  action() {
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_map_add' });
+  },
+});
+
+FlowRouter.route('/admin/map/edit/:id', {
+  name: 'App.map',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.user() && !Meteor.loggingIn())
+      redirect('/admin/login');
+  }],
+  action() {
+    BlazeLayout.render('App_admin_layout', { main: 'App_admin_map_add' });
   },
 });

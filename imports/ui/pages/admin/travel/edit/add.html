@@ -1,0 +1,20 @@
+<template name="App_admin_travel_add">
+  <div class="container">
+    <div class="adminHeader">
+      <h1>Add/Edit Travel</h1>
+      <input id="adminTravelPhotoInput" type="file" style="display: none;" accept="image/."/>
+      <button class="btn adminAddPhoto">add photo</button>
+    </div>
+    <img id="addTravelPhoto"/>
+    <h4>Caption</h4>
+    <input type="text" class="adminTextInput captionInput">
+    <h4>Title</h4>
+    <input type="text" class="adminTextInput titleInput">
+    <h4>Content</h4>
+    <textarea class="adminTextInput contentInput"></textarea>
+  </div>
+  <div class="centered bottomBar">
+    <button class="btn adminCancelSave" id="adminTravelCancel">cancel</button>
+    <button class="btn adminCancelSave" id="adminTravelSave">save</button>
+  </div>
+</template>

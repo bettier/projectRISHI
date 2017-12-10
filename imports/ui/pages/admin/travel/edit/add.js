@@ -1,7 +1,7 @@
 import './add.html'
 
-import {Images} from '/imports/api/images/images.js'
-import {Projects} from '/imports/api/projects/projects.js'
+import {Images} from '/imports/api/images/images.js';
+import {Travel} from '/imports/api/travel/travel.js';
 
 let id = new ReactiveVar("");
 let prevPhoto = undefined;
@@ -17,53 +17,52 @@ function initializePage() {
   $('.centered').append(r);
   $('.adminCancelSave').css('width', '27%');
 
-  let project = Projects.findOne(id.get());
+  let travel = Travel.findOne(id.get());
 
-  $(".titleInput").val(project.title);
+  $(".titleInput").val(travel.title);
 
   // get rid of <br/>
-  $(".contentInput").val(project.body.split('<br/>').join('\n'));
+  $(".contentInput").val(travel.body.split('<br/>').join('\n'));
 
   // show image
-  $('#addProjectsPhoto').attr('src', "/cfs/files/images/" + project.picture).show();
-  $('.captionInput').show().val(project.caption);
+  $('#addTravelPhoto').attr('src', "/cfs/files/images/" + travel.picture).show();
+  $('.captionInput').show().val(travel.caption);
 
-  prevPhoto = project.picture;
+  prevPhoto = travel.picture;
 }
 
-Template.App_admin_projects_add.onCreated(function () {
-  Meteor.subscribe("projects", function () {
+Template.App_admin_travel_add.onCreated(function () {
+  Meteor.subscribe("travel", function () {
     initializePage();
   });
   Meteor.subscribe("images.all");
 });
 
-Template.App_admin_projects_add.onRendered(function () {
-  $('#addProjectsPhoto').hide();
-  $('.captionInput').hide();
+Template.App_admin_travel_add.onRendered(function () {
+  $('#addTravelPhoto').hide();
 });
 
-Template.App_admin_projects_add.events({
-  'click #adminProjectsCancel' (event) {
+Template.App_admin_travel_add.events({
+  'click #adminTravelCancel' (event) {
     FlowRouter.go("/admin/travel");
   },"click #delete_button"(event) {
-    if(confirm("Are you sure you want to delete this project?")){
+    if(confirm("Are you sure you want to delete this travel item?")){
       console.log("deleting: " + id.get());
-      Meteor.call("projects.delete", id.get());
-      FlowRouter.go('/admin/projects');
+      Meteor.call("travel.delete", id.get());
+      FlowRouter.go('/admin/travel');
     }
   },
-  'click #adminProjectsSave'(event) {
+  'click #adminTravelSave'(event) {
     event.preventDefault();
 
-    // add <br/> for html
+    // edit <br/> for html
     let body = $(".contentInput").val().replace(/\n/g, '<br/>');
 
     let title = $(".titleInput").val();
     let caption = $(".captionInput").val();
 
     // get image
-    let photoInput = $('#adminProjectsPhotoInput').prop("files");
+    let photoInput = $('#adminTravelPhotoInput').prop("files");
     let photoFile = photoInput[0];
 
     let photoPromise = new Promise((resolve, reject) => {
@@ -86,13 +85,13 @@ Template.App_admin_projects_add.events({
       }
 
       if (id.get()) {
-        Meteor.call('projects.update', id.get(),
+        Meteor.call('travel.update', id.get(),
           title,
           pictureID,
           caption,
           body);
       } else {
-        Meteor.call('projects.insert',
+        Meteor.call('travel.insert',
           title,
           pictureID,
           caption,
@@ -101,19 +100,18 @@ Template.App_admin_projects_add.events({
       FlowRouter.go("/admin/travel");
     });
   },
-  'change #adminProjectsPhotoInput'(event) {
+  'change #adminTravelPhotoInput'(event) {
     let file = event.originalEvent.srcElement.files[0];
     let reader = new FileReader();
 
     reader.onloadend = function () {
-      $('#addProjectsPhoto').attr('src', reader.result).show();
+      $('#addTravelPhoto').attr('src', reader.result).show();
       prevPhoto = undefined;
     };
     reader.readAsDataURL(file);
-    $('.captionInput').show();
   },
   'click .adminAddPhoto'(event) {
     event.preventDefault();
-    $("#adminProjectsPhotoInput").click();
+    $("#adminTravelPhotoInput").click();
   }
 });

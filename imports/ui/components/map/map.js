@@ -1,11 +1,13 @@
 import {mapStyles} from './mapObjects.js'
 import {initialWards} from './mapObjects.js'
-import {Wards} from '/imports/api/map/wards.js'
+import {Wards, MapSettings} from '/imports/api/map/map.js'
 import './mapLabel.js'
 import './map.html'
 
 // wards on the map
 let wards = undefined;
+let mapCenterCoor = undefined;
+let mapZoom = undefined;
 
 // Variables to represent the list of markers
 let listofmarkers = ['Education', 'Women\'s Empowerment', 'Health', 'Agriculture', 'Points of Interest'];
@@ -14,14 +16,16 @@ let listofmarkers = ['Education', 'Women\'s Empowerment', 'Health', 'Agriculture
  * Set up map default view
  */
 function initMap() {
-  map = new google.maps.Map(document.getElementsByClassName('map')[0], {
-    zoom: 14,
-    minZoom: 13,
+  console.log(typeof(mapZoom));
+  $('.map').goMap({
+    zoom: mapZoom,
+    minZoom: 12,
     disableDefaultUI: true,
-    center: new google.maps.LatLng(30.565075, 77.516132),
+    center: new google.maps.LatLng(mapCenterCoor[0], mapCenterCoor[1]),
     mapTypeId: 'roadmap',
     styles: mapStyles,
   });
+  map = $.goMap.map;
 }
 
 /**
@@ -73,7 +77,8 @@ function createWardFilter(name, color, center) {
 
     // reset map unzooms but everything else zooms in
     if (name == 'Reset Map') {
-      map.setZoom(14)
+      console.log(mapZoom + 'aldjfladsflkajhdsfsa');
+      map.setZoom(mapZoom);
     } else {
       map.setZoom(15);
     }
@@ -85,7 +90,7 @@ function createWardFilter(name, color, center) {
  * @param coords the border of the ward
  * @param color the color of the ward
  */
-function makeWard (coords, color) {
+function makeWard(coords, color) {
   new google.maps.Polygon({
     paths: coords,
     strokeColor: color,
@@ -122,7 +127,7 @@ function markerGenerator(place) {
     });
   }
 
-  // this is where we add the description
+  // this is where we edit the description
   marker.content = '<h1>' + marker.getTitle() + '</h1>' +
     '<center><img width=150 src="../icons/temp.png"/></img><travel>' +
     place.description + '</center>';
@@ -170,7 +175,7 @@ function initComp() {
   setFilterHeight();
 
   // create reset map button
-  createWardFilter('Reset Map', 'reset', ['30.565075', '77.516132']);
+  createWardFilter('Reset Map', 'reset', mapCenterCoor);
 
   // make UI
   initMap();
@@ -212,6 +217,11 @@ function initMarkerFilterBar() {
  * Put in the wards into the DB to test the DB.
  */
 function initDB() {
+  Meteor.call('mapSettings.insert',
+    [30.565075, 77.516132],
+    14
+  );
+
   for (let i = 0; i < initialWards.length; i++) {
     let ward = initialWards[i];
     Meteor.call('wards.insert',
@@ -225,8 +235,14 @@ function initDB() {
 }
 
 Template.component_map.onCreated(function () {
-  // initDB();
-  Meteor.subscribe("wards", function () {
-    initComp();
-  })
+  Meteor.subscribe("mapSettings", function () {
+    Meteor.subscribe("wards", function () {
+      // initDB();
+
+      let mapSettings = MapSettings.find({}).fetch()[0];
+      mapCenterCoor = mapSettings.coordinates;
+      mapZoom = mapSettings.zoom;
+      initComp();
+    })
+  });
 });

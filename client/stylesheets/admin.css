@@ -1,10 +1,47 @@
-.adminTextInput{
+#adminZoomInput {
+    height: 2rem;
+    width: 3rem;
+    background: none;
+    color: white;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+.adminTextInput {
     border: 1px grey solid;
     width: 100%;
     resize: none;
-    border-radius: 9px;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.adminMapSaveCancel {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    width: 25%;
+    background: none;
+    border-radius: 9px;
+    border: white 1px solid;
+    color: white !important;
+    cursor: pointer;
+    margin-top: -.5rem;
+}
+
+#adminMapButton {
+    /*font-size: 40px;*/
+}
+
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px grey solid;
+}
+
+.bottomElement {
+    margin-bottom: 50px;
 }
 
 .titleInput {
@@ -12,17 +49,21 @@
     margin-bottom: 1rem;
 }
 
+.adminMapDisplay {
+    width: 100%;
+}
+
 .contentInput {
     height: 400px;
     padding-top: .7rem;
 }
 
-.adminHeader{
+.adminHeader {
     width: 100%;
     display: inline-flex;
 }
 
-.adminAddPhoto{
+.adminAddPhoto {
     margin-top: .4rem;
     margin-left: auto;
     background-color: lightgrey;
@@ -34,21 +75,20 @@
     margin-top: .1rem;
     margin-left: .1rem;
     margin-right: .1rem;
-    background-color: lightgrey;
+    cursor: pointer;
 }
 
 .captionInput {
     width: 100%;
     margin-bottom: 1rem;
-    margin-top: .5rem;
 }
 
-.editProjectsTitle{
+.editProjectsTitle {
     border-bottom: darkgrey 1px solid;
 
 }
 
-#addProjectsPhoto, #addTravelPhoto{
+#addProjectsPhoto, #addTravelPhoto {
     width: 100%;
 }
 
@@ -60,15 +100,59 @@
 
 .adminNavBar {
     border-bottom: darkgrey 1px solid;
+    background-color: lightgrey;
+    box-shadow: 10px 0px 10px darkgrey;
 }
 
-.adminNavBarButtons{
+.adminNavBarButtons {
     margin-left: auto;
     color: grey;
     font-size: 30px;
+    width: 100%;
+    display: flex;
 }
 
-.adminProjectsAddButton{
+.adminLoginInput{
+    font-size: 2rem;
+    border:none;
+    text-align: center;
+    background-color: #dbdbdb !important;
+    border-radius: 9px;
+    margin-bottom: 1rem;
+}
+
+.adminMapOverlay {
+    position:fixed;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.6);
+    z-index:5;
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+.adminMapDescriptions {
+    margin-top: 1.25rem;
+    margin-left: 1rem;
+    color: white;
+}
+
+.adminMapViewHeader {
+    width: 100%;
+    display: flex;
+    height: 4rem;
+}
+
+.adminZoom {
+    margin-left: auto;
+}
+
+.logoutButton {
+    margin-left: auto;
+}
+
+.adminProjectsAddButton {
     margin-left: auto;
     font-size: 40px;
 }
