@@ -6,7 +6,7 @@
   </div>
 
   <div class="projectsSideMenu">
-    <span class="sideMenuTitle">Projects:</span>
+    <span class="sideMenuTitle">Projects</span>
     {{#each projects}}
       {{> sideMenuSelector}}
     {{/each}}
@@ -32,7 +32,7 @@
 
 <template name="sideMenuSelector">
   <span class="sideMenuSelector">
-    <a class="sideMenuText" href="#{{title}}">{{title}}</a>
     <span class="sideMenuText"> | </span>
+    <a class="sideMenuText" href="#{{title}}">{{title}}</a>
   </span>
 </template>

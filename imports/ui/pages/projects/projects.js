@@ -12,3 +12,7 @@ Template.App_projects.onCreated(function() {
   Meteor.subscribe('projects');
   Meteor.subscribe('images.all');
 });
+
+Template.App_projects.onRendered(function() {
+  window.scrollTo(0, 0);
+});

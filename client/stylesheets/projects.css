@@ -71,18 +71,18 @@
     position: fixed;
     width: 100%;
     bottom: 0px;
-    background-color: white;
+    background-color: #F16822;
     text-align: justify;
     font-size: 17px;
     border-top: grey 1px solid;
 }
 
 .sideMenuText {
-    color: grey;
+    color: white;
 }
 
 .sideMenuTitle {
-    color: grey;
+    color: white;
     font-weight: bold;
     margin-left: 1rem;
 }
