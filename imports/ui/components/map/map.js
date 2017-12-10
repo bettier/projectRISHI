@@ -11,12 +11,15 @@ let mapZoom = undefined;
 
 // Variables to represent the list of markers
 let listofmarkers = ['Education', 'Women\'s Empowerment', 'Health', 'Agriculture', 'Points of Interest'];
+let icons = ['education_small', 'womens_empowerment', 'health_small', 'agriculture', 'points_of_interest'];
+
+// holds the places on the map
+let placesOnMap = new Map();
 
 /**
  * Set up map default view
  */
 function initMap() {
-  console.log(typeof(mapZoom));
   $('.map').goMap({
     zoom: mapZoom,
     minZoom: 12,
@@ -77,7 +80,6 @@ function createWardFilter(name, color, center) {
 
     // reset map unzooms but everything else zooms in
     if (name == 'Reset Map') {
-      console.log(mapZoom + 'aldjfladsflkajhdsfsa');
       map.setZoom(mapZoom);
     } else {
       map.setZoom(15);
@@ -107,25 +109,23 @@ function makeWard(coords, color) {
  * @param place the places we're putting on the map
  */
 function markerGenerator(place) {
-  let marker;
   let position = new google.maps.LatLng(place.coordinates[0], place.coordinates[1]);
-  if (place.logo) {
-    marker = new google.maps.Marker({
-      position: position,
-      map: map,
-      title: place.name,
-      //info:
-      animation: google.maps.Animation.DROP,
-      icon: '../icons/' + place.logo + '.png'
-    });
-  } else {
-    marker = new google.maps.Marker({
-      position: place.coordinates,
-      map: map,
-      title: place.name,
-      animation: google.maps.Animation.DROP
-    });
+  let marker = new google.maps.Marker({
+    position: position,
+    map: map,
+    title: place.name,
+    //info:
+    animation: google.maps.Animation.DROP,
+    icon: '../icons/' + place.logo + '.png'
+  });
+
+  // keep track of all of the places
+  let markerHolder = placesOnMap.get(place.logo);
+  if (!markerHolder) {
+    placesOnMap.set(place.logo, []);
+    markerHolder = placesOnMap.get(place.logo);
   }
+  markerHolder.push(marker);
 
   // this is where we edit the description
   marker.content = '<h1>' + marker.getTitle() + '</h1>' +
@@ -171,7 +171,6 @@ function createMarkers(places) {
 function initComp() {
   // get wards from server
   wards = Wards.find({}).fetch();
-
   setFilterHeight();
 
   // create reset map button
@@ -198,20 +197,43 @@ function setFilterHeight() {
  * Initializes the right filter bar
  */
 function initMarkerFilterBar() {
-  var icons = ['education_small', 'womens_empowerment', 'health_small', 'agriculture', 'points_of_interest'];
-  var filterRow2 = '<tr><td class="subfilter"><img width=15 src="/icons/IMAGE.png"/>SPLICE</td></tr>';
+  //first add show all/hide all
+  resetMarkers = $.parseHTML('<tr><td class="subfilter">Show All</td></tr>');
+  $('#tester').append(resetMarkers);
+  placesOnMap.forEach(function (value, key) {
+    $(resetMarkers).click(function () {
+      for (let i = 0; i < value.length; i++) {
+        value[i].setMap(map);
+      }
+    });
+  });
 
-  for (var i = 0; i < listofmarkers.length; i++) {
+  let filterRow2 = '<tr><td class="subfilter"><img width=15 src="/icons/IMAGE.png"/>SPLICE</td></tr>';
+
+  for (let i = 0; i < listofmarkers.length; i++) {
     (function (i) {
-
-      var row2 = filterRow2.replace('SPLICE', listofmarkers[i]);
-      var currFilter2 = $.parseHTML(row2.replace('IMAGE', icons[i]));
-
+      let row2 = filterRow2.replace('SPLICE', listofmarkers[i]);
+      let currFilter2 = $.parseHTML(row2.replace('IMAGE', icons[i]));
       $('#tester').append(currFilter2);
+
+      setPlaceMapListener(icons[i], currFilter2);
     })(i);
   }
 }
 
+function setPlaceMapListener(name, htmlElement) {
+  $(htmlElement).click(function () {
+    let listOfPlaces = placesOnMap.get(name);
+    for (let i = 0; i < listOfPlaces.length; i++) {
+      let place = listOfPlaces[i];
+      if (place.getMap()) {
+        place.setMap(null);
+      } else {
+        place.setMap(map);
+      }
+    }
+  });
+}
 
 /**
  * Put in the wards into the DB to test the DB.
@@ -229,7 +251,7 @@ function initDB() {
       ward.center,
       ward.border,
       ward.color,
-      // ward.places
+      ward.places
     );
   }
 }
