@@ -1,5 +1,8 @@
 # projectRISHI
 
+## documentation
+Project Documentation is in Documentation.pdf
+
 To Run:
 1. Pull the repository
 2. Install [Meteor](https://www.meteor.com/)
