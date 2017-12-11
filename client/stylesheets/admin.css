@@ -89,6 +89,7 @@
 }
 
 #addProjectsPhoto, #addTravelPhoto {
+    margin-bottom: 1rem;
     width: 100%;
 }
 
@@ -153,6 +154,6 @@
 }
 
 .adminProjectsAddButton {
-    margin-left: auto;
+    margin-left: auto !important;
     font-size: 40px;
 }

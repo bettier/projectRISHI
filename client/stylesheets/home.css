@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-.btn-default {
+.rishiButton {
     border: 1.5px solid #21A54A !important;
     color: #21A54A;
     background-color: #f5f5f5;
