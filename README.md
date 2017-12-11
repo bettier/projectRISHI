@@ -10,3 +10,7 @@ Project Documentation is in Documentation.pdf
 4. Run meteor
 5. Open a web browser to localhost:3000
 6. Changes to code will automatically cause Meteor to rerun
+
+## Deploying the website
+1. Deploy to AWS: https://goo.gl/Wb7Lje
+2. Deploy to Meteor Hosting: https://www.meteor.com/hosting
