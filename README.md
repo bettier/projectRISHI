@@ -1,9 +1,9 @@
-# projectRISHI
+# Project RISHI Website
 
-## documentation
+## Documentation
 Project Documentation is in Documentation.pdf
 
-To Run:
+## Running the website
 1. Pull the repository
 2. Install [Meteor](https://www.meteor.com/)
 3. Open a commandline in the project directory
