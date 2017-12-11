@@ -4,7 +4,6 @@
 }
 
 .travel_panetitle {
-    color: white;
     font-size: 50px;
     font-family: 'Lato', sans-serif;
     margin-bottom: 20px;
@@ -18,7 +17,7 @@
 }
 
 .travel_panecaption {
-    color: #CCCCCC;
+    color: grey;
     font-size: 15px;
     font-family: 'Lato', sans-serif;
     margin-bottom: 50px;
