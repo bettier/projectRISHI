@@ -1,7 +1,7 @@
 # Project RISHI Website
 
 ## Prototype
-Prototype is deployed at project-rishi.herokuapp.com
+Prototype is deployed at https://project-rishi.herokuapp.com
 
 ## Documentation
 Documentation to help in basic administration is in Documentation.pdf
