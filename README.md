@@ -1,7 +1,10 @@
 # Project RISHI Website
 
+## Prototype
+Prototype is deployed at project-rishi.herokuapp.com
+
 ## Documentation
-Project Documentation is in Documentation.pdf
+Documentation to help in basic administration is in Documentation.pdf
 
 ## Running the website
 1. Pull the repository
